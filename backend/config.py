@@ -51,11 +51,11 @@ PRODUTOS: List[str] = [
     "SUMMIT_FS",
     "TEMIBLE",
     "VALLEX",
-    "AVERT_MAX"
-    "RESIL"
-    "TRIZEB"
-    "TRIPLEC"
-    "ONEFIX"
+    "AVERT_MAX",
+    "RESIL",
+    "TRIZEB",
+    "TRIPLEC",
+    "ONEFIX",
 ]
 
 # Tipos de arquivo permitidos
