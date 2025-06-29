@@ -108,16 +108,17 @@ function App() {
       <header className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-tecnomyl-primary rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                </svg>
-              </div>
-              <h1 className="text-xl font-bold text-gray-900">Upload Tecnomyl</h1>
+            <div className="flex items-center space-x-4">
+              <img 
+                src="/logo_horizontal_tecnomyl.png" 
+                alt="Tecnomyl Logo" 
+                className="h-10 w-auto object-contain"
+              />
+              <div className="h-6 w-px bg-gray-300"></div>
+              <h1 className="text-xl font-bold text-gray-900">Upload de Arquivos</h1>
             </div>
             <div className="text-sm text-gray-500">
-              Sistema de upload de arquivos
+              Sistema de gestão de documentos
             </div>
           </div>
         </div>
@@ -249,8 +250,27 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-12 text-center text-sm text-gray-500 pb-8">
-        <p>Upload Tecnomyl &copy; 2024 - Sistema de Gestão de Arquivos</p>
+      <footer className="mt-12 border-t bg-gray-50">
+        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div className="flex items-center space-x-2 mb-4 md:mb-0">
+              <img 
+                src="/logo_horizontal_tecnomyl.png" 
+                alt="Tecnomyl" 
+                className="h-6 w-auto object-contain opacity-60"
+              />
+              <span className="text-sm text-gray-500">Sistema de Upload de Arquivos</span>
+            </div>
+            <div className="text-center md:text-right">
+              <p className="text-sm text-gray-500">
+                &copy; 2024 Tecnomyl. Todos os direitos reservados.
+              </p>
+              <p className="text-xs text-gray-400 mt-1">
+                Versão 1.0 - Gestão de Documentos
+              </p>
+            </div>
+          </div>
+        </div>
       </footer>
     </div>
   );

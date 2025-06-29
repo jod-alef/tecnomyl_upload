@@ -1,11 +1,18 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Upload Tecnomyl",
+  "name": "Upload Tecnomyl - Sistema de Upload de Arquivos",
+  "description": "Sistema de upload de arquivos para produtos da Tecnomyl",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "logo_horizontal_tecnomyl.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "logo192.png",
@@ -20,6 +27,9 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#1a365d",
+  "background_color": "#f7fafc",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "pt-BR"
 }
