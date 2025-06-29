@@ -8,7 +8,34 @@ const api = axios.create({
   timeout: 30000, // 30 segundos para uploads
 });
 
+// Interceptor para adicionar token automaticamente
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('auth_token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// Interceptor para tratar erros de autenticação
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('auth_token');
+      window.location.href = '/';
+    }
+    return Promise.reject(error);
+  }
+);
+
 export const apiService = {
+  // Fazer login
+  async login(username: string, password: string): Promise<any> {
+    const response = await api.post('/api/login', { username, password });
+    return response.data;
+  },
+
   // Buscar lista de produtos
   async getProducts(): Promise<string[]> {
     const response = await api.get('/api/products');

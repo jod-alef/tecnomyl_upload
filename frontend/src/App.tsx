@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import ProductSelector from './components/ProductSelector';
 import FileUploadBox from './components/FileUploadBox';
+import LoginForm from './components/LoginForm';
 import { FileUploads, FileType, UploadedFile } from './types';
 import { apiService } from './services/api';
 import './App.css';
 
 function App() {
-  // Estados
+  // Estados de autenticação
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState<boolean>(true);
+  const [loginError, setLoginError] = useState<string>('');
+  const [isLoggingIn, setIsLoggingIn] = useState<boolean>(false);
+
+  // Estados da aplicação
   const [products, setProducts] = useState<string[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<string>('');
   const [uploadedFiles, setUploadedFiles] = useState<FileUploads>({});
@@ -14,10 +21,56 @@ function App() {
   const [uploading, setUploading] = useState<boolean>(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
-  // Carregar produtos na inicialização
+  // Verificar autenticação na inicialização
   useEffect(() => {
-    loadProducts();
+    checkAuthentication();
   }, []);
+
+  // Carregar produtos quando autenticado
+  useEffect(() => {
+    if (isAuthenticated) {
+      loadProducts();
+    }
+  }, [isAuthenticated]);
+
+  const checkAuthentication = () => {
+    const token = localStorage.getItem('auth_token');
+    if (token) {
+      setIsAuthenticated(true);
+    }
+    setIsCheckingAuth(false);
+  };
+
+  const handleLogin = async (username: string, password: string) => {
+    try {
+      setIsLoggingIn(true);
+      setLoginError('');
+      
+      const response = await apiService.login(username, password);
+      
+      if (response.success && response.token) {
+        localStorage.setItem('auth_token', response.token);
+        setIsAuthenticated(true);
+      } else {
+        setLoginError('Falha no login');
+      }
+    } catch (error: any) {
+      console.error('Erro no login:', error);
+      const errorMessage = error.response?.data?.detail || 'Erro ao fazer login';
+      setLoginError(errorMessage);
+    } finally {
+      setIsLoggingIn(false);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('auth_token');
+    setIsAuthenticated(false);
+    setProducts([]);
+    setSelectedProduct('');
+    setUploadedFiles({});
+    setMessage(null);
+  };
 
   const loadProducts = async () => {
     try {
@@ -102,6 +155,29 @@ function App() {
     setMessage(null);
   };
 
+  // Loading inicial
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-tecnomyl-green mx-auto"></div>
+          <p className="mt-4 text-gray-600">Verificando autenticação...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Tela de login
+  if (!isAuthenticated) {
+    return (
+      <LoginForm 
+        onLogin={handleLogin}
+        error={loginError}
+        loading={isLoggingIn}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
@@ -117,8 +193,16 @@ function App() {
               <div className="h-6 w-px bg-white bg-opacity-30"></div>
               <h1 className="text-xl font-bold text-white">Upload de Arquivos</h1>
             </div>
-            <div className="text-sm text-white text-opacity-90">
-              Sistema de gestão de documentos
+            <div className="flex items-center space-x-4">
+              <div className="text-sm text-white text-opacity-90">
+                Sistema de gestão de documentos
+              </div>
+              <button
+                onClick={handleLogout}
+                className="text-sm text-white text-opacity-90 hover:text-white px-3 py-1 rounded border border-white border-opacity-30 hover:border-opacity-50 transition-colors"
+              >
+                Sair
+              </button>
             </div>
           </div>
         </div>

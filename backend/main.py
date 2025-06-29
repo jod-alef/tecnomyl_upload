@@ -5,9 +5,10 @@ from typing import List, Optional
 import logging
 import uvicorn
 
-from config import PRODUTOS, TIPOS_ARQUIVO, MAX_FILE_SIZE, ALLOWED_EXTENSIONS, CORS_ORIGINS, API_HOST, API_PORT
-from models import UploadResponse, ProductInfo, UploadStatus, FileInfo
+from config import PRODUTOS, TIPOS_ARQUIVO, MAX_FILE_SIZE, ALLOWED_EXTENSIONS, CORS_ORIGINS, API_HOST, API_PORT, JWT_EXPIRE_HOURS
+from models import UploadResponse, ProductInfo, UploadStatus, FileInfo, LoginRequest, LoginResponse
 from minio_client import minio_client
+from auth import auth, RequireAuth
 
 # Configuração de logging
 logging.basicConfig(level=logging.INFO)
@@ -47,6 +48,33 @@ async def root():
     return {"message": "Upload Tecnomyl API está funcionando!"}
 
 
+@app.post("/api/login", response_model=LoginResponse)
+async def login(credentials: LoginRequest):
+    """Endpoint de login simples"""
+    
+    if credentials.username != auth.username:
+        raise HTTPException(
+            status_code=401, 
+            detail="Usuário ou senha incorretos"
+        )
+    
+    if not auth.verify_password(credentials.password):
+        raise HTTPException(
+            status_code=401, 
+            detail="Usuário ou senha incorretos"
+        )
+    
+    # Gerar token
+    token = auth.create_access_token()
+    
+    return LoginResponse(
+        success=True,
+        message="Login realizado com sucesso",
+        token=token,
+        expires_in_hours=JWT_EXPIRE_HOURS
+    )
+
+
 @app.get("/api/products", response_model=List[str])
 async def get_products():
     """Retorna lista de produtos disponíveis"""
@@ -62,6 +90,7 @@ async def get_file_types():
 @app.post("/api/upload/{produto}", response_model=UploadResponse)
 async def upload_files(
     produto: str,
+    current_user: str = RequireAuth,
     bula: Optional[UploadFile] = File(None),
     fispq: Optional[UploadFile] = File(None),
     ficha_emergencia: Optional[UploadFile] = File(None)

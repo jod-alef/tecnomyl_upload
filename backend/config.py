@@ -63,4 +63,11 @@ TIPOS_ARQUIVO = ["bula", "FISPQ", "Ficha_de_Emergencia"]
 
 # Configurações de upload
 MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB
-ALLOWED_EXTENSIONS = [".pdf"] 
+ALLOWED_EXTENSIONS = [".pdf"]
+
+# Authentication Configuration (Single User)
+AUTH_USERNAME = os.getenv("AUTH_USERNAME", "admin")
+AUTH_PASSWORD = os.getenv("AUTH_PASSWORD", "admin123")
+JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "sua-chave-secreta-aqui-muito-longa-e-segura-para-jwt")
+JWT_ALGORITHM = os.getenv("JWT_ALGORITHM", "HS256")
+JWT_EXPIRE_HOURS = int(os.getenv("JWT_EXPIRE_HOURS", "24")) 

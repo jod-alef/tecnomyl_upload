@@ -24,6 +24,13 @@ services:
       # CORS Configuration
       - CORS_ORIGINS=${CORS_ORIGINS}
       
+      # Authentication Configuration (Single User)
+      - AUTH_USERNAME=${AUTH_USERNAME:-admin}
+      - AUTH_PASSWORD=${AUTH_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_ALGORITHM=${JWT_ALGORITHM:-HS256}
+      - JWT_EXPIRE_HOURS=${JWT_EXPIRE_HOURS:-24}
+      
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8000/health || python3 healthcheck.py || exit 1"]

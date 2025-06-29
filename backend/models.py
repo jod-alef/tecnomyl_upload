@@ -2,6 +2,18 @@ from pydantic import BaseModel
 from typing import Optional, List
 
 
+class LoginRequest(BaseModel):
+    username: str
+    password: str
+
+
+class LoginResponse(BaseModel):
+    success: bool
+    message: str
+    token: Optional[str] = None
+    expires_in_hours: Optional[int] = None
+
+
 class UploadResponse(BaseModel):
     success: bool
     message: str
