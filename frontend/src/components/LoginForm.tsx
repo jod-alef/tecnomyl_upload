@@ -25,27 +25,43 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, error, loading }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-tecnomyl-green to-green-600 flex items-center justify-center p-4">
+    <div 
+      className="min-h-screen flex items-center justify-center p-4"
+      style={{
+        backgroundImage: 'url(/bg.jpg)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Overlay para melhorar contraste */}
+      <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+      
       {/* Container centralizado com largura máxima de 40% */}
-      <div className="w-full max-w-md mx-auto">
-        {/* Caixa de Login */}
-        <div className="bg-white rounded-lg shadow-xl p-8 mx-auto" style={{maxWidth: '400px'}}>
-          {/* Header com Logo */}
-          <div className="text-center mb-6">
+      <div className="w-full max-w-md mx-auto relative z-10 px-6">
+        {/* Container com borda branca */}
+        <div className="bg-white rounded-lg p-12 shadow-2xl mx-auto backdrop-blur-sm" style={{maxWidth: '500px', borderRadius: '10px'}}>
+          {/* Caixa de Login */}
+          <div className="bg-white rounded-lg shadow-xl overflow-hidden" style={{maxWidth: '400px', margin: '0 auto'}}>
+          {/* Faixa do Header com cor da logo */}
+          <div className="text-center py-6 px-8" style={{backgroundColor: '#6BA43A'}}>
             <div className="flex justify-center mb-4">
               <img 
                 src="/logo_horizontal_tecnomyl.png" 
                 alt="Tecnomyl Logo" 
-                className="h-10 w-auto object-contain"
+                className="h-12 w-auto object-contain"
               />
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+            <h2 className="text-2xl font-bold text-white mb-2">
               Sistema de Upload
             </h2>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-white text-opacity-90">
               Faça login para acessar o sistema
             </p>
           </div>
+          
+          {/* Conteúdo do formulário */}
+          <div className="p-8">
 
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
@@ -116,6 +132,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLogin, error, loading }) => {
             <p className="text-center text-sm text-gray-500">
               Sistema Tecnomyl - Upload de Arquivos
             </p>
+          </div>
+          </div>
           </div>
         </div>
       </div>
