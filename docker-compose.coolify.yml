@@ -37,6 +37,10 @@ services:
     build: 
       context: ./frontend
       dockerfile: Dockerfile.prod
+      args:
+        - REACT_APP_API_URL=${REACT_APP_API_URL}
+        - REACT_APP_APP_NAME=Upload Tecnomyl
+        - REACT_APP_ENV=production
     expose:
       - "80"
     environment:
