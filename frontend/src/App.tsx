@@ -103,9 +103,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-tecnomyl-green shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
@@ -114,10 +114,10 @@ function App() {
                 alt="Tecnomyl Logo" 
                 className="h-10 w-auto object-contain"
               />
-              <div className="h-6 w-px bg-gray-300"></div>
-              <h1 className="text-xl font-bold text-gray-900">Upload de Arquivos</h1>
+              <div className="h-6 w-px bg-white bg-opacity-30"></div>
+              <h1 className="text-xl font-bold text-white">Upload de Arquivos</h1>
             </div>
-            <div className="text-sm text-gray-500">
+            <div className="text-sm text-white text-opacity-90">
               Sistema de gestão de documentos
             </div>
           </div>
@@ -125,7 +125,7 @@ function App() {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <main className="flex-1 max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8 w-full">
         <div className="bg-white rounded-lg shadow-sm border p-6 space-y-8">
           
           {/* Título e Descrição */}
@@ -250,22 +250,22 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-12 border-t bg-gray-50">
+      <footer className="border-t bg-gray-600">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <img 
                 src="/logo_horizontal_tecnomyl.png" 
                 alt="Tecnomyl" 
-                className="h-6 w-auto object-contain opacity-60"
+                className="h-6 w-auto object-contain opacity-80"
               />
-              <span className="text-sm text-gray-500">Sistema de Upload de Arquivos</span>
+              <span className="text-sm text-gray-200">Sistema de Upload de Arquivos</span>
             </div>
             <div className="text-center md:text-right">
-              <p className="text-sm text-gray-500">
+              <p className="text-sm text-gray-200">
                 &copy; 2024 Tecnomyl. Todos os direitos reservados.
               </p>
-              <p className="text-xs text-gray-400 mt-1">
+              <p className="text-xs text-gray-300 mt-1">
                 Versão 1.0 - Gestão de Documentos
               </p>
             </div>

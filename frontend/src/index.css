@@ -28,6 +28,7 @@ code {
   --tecnomyl-secondary: #3b82f6;
   --tecnomyl-dark: #1e3a8a;
   --tecnomyl-light: #dbeafe;
+  --tecnomyl-green: #6BA43A;
   --gray-50: #f9fafb;
   --gray-100: #f3f4f6;
   --gray-200: #e5e7eb;
@@ -81,6 +82,7 @@ code {
 /* Flexbox */
 .flex { display: flex; }
 .flex-col { flex-direction: column; }
+.flex-1 { flex: 1; }
 .items-center { align-items: center; }
 .justify-center { justify-content: center; }
 .justify-between { justify-content: space-between; }
@@ -111,6 +113,8 @@ code {
 .text-gray-500 { color: var(--gray-500); }
 .text-gray-400 { color: var(--gray-400); }
 .text-white { color: white; }
+.text-gray-200 { color: var(--gray-200); }
+.text-gray-300 { color: var(--gray-300); }
 .text-green-800 { color: var(--green-800); }
 .text-green-500 { color: var(--green-500); }
 .text-red-800 { color: var(--red-800); }
@@ -121,8 +125,10 @@ code {
 .bg-tecnomyl-primary { background-color: var(--tecnomyl-primary); }
 .bg-tecnomyl-dark { background-color: var(--tecnomyl-dark); }
 .bg-tecnomyl-light { background-color: var(--tecnomyl-light); }
+.bg-tecnomyl-green { background-color: var(--tecnomyl-green); }
 .bg-gray-100 { background-color: var(--gray-100); }
 .bg-gray-400 { background-color: var(--gray-400); }
+.bg-gray-600 { background-color: var(--gray-600); }
 .bg-green-50 { background-color: var(--green-50); }
 .bg-red-50 { background-color: var(--red-50); }
 .bg-red-100 { background-color: var(--red-100); }
@@ -196,6 +202,9 @@ code {
 /* Objeto e Posicionamento */
 .object-contain { object-fit: contain; }
 .opacity-60 { opacity: 0.6; }
+.opacity-80 { opacity: 0.8; }
+.bg-opacity-30 { background-color: rgba(255, 255, 255, 0.3); }
+.text-opacity-90 { color: rgba(255, 255, 255, 0.9); }
 
 /* Animações */
 .animate-spin {
