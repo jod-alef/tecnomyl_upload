@@ -33,13 +33,8 @@ services:
     dockerfile: frontend/Dockerfile.prod
     environment:
       - REACT_APP_API_URL
-    healthcheck:
-      enabled: true
-      url: '/health'
-      method: 'GET'
-      interval: 30
-      timeout: 10
-      retries: 3
+    depends_on:
+      - backend
     ports:
       - 80
     resource:
@@ -47,11 +42,11 @@ services:
       memory: 256
 
 deployment:
-  compose_file: docker-compose.prod.yml
+  compose_file: docker-compose.coolify.yml
   restart_policy: unless-stopped
   
 network:
-  attachable: true
+  attachable: false
 
 volumes:
   - name: app_data
