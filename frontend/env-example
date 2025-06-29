@@ -1,0 +1,10 @@
+# Copie este arquivo para .env e ajuste com suas configurações
+
+# URL da API Backend
+REACT_APP_API_URL=http://localhost:8000
+
+# Nome da aplicação
+REACT_APP_APP_NAME=Upload Tecnomyl
+
+# Ambiente (development, production)
+REACT_APP_ENV=development 

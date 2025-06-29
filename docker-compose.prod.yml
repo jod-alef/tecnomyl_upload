@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # Backend Python
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: tecnomyl-backend
+    ports:
+      - "8000:8000"
+    environment:
+      # MinIO Configuration (usar variáveis de ambiente do Coolify)
+      - MINIO_ENDPOINT=${MINIO_ENDPOINT:-minio.exemplo.com:9000}
+      - MINIO_ACCESS_KEY=${MINIO_ACCESS_KEY}
+      - MINIO_SECRET_KEY=${MINIO_SECRET_KEY}
+      - MINIO_SECURE=${MINIO_SECURE:-true}
+      - MINIO_BUCKET=${MINIO_BUCKET:-tecnomyl}
+      
+      # WordPress Integration (opcional)
+      - WORDPRESS_API_URL=${WORDPRESS_API_URL:-}
+      - WORDPRESS_USERNAME=${WORDPRESS_USERNAME:-}
+      - WORDPRESS_PASSWORD=${WORDPRESS_PASSWORD:-}
+      
+      # CORS Configuration
+      - CORS_ORIGINS=${CORS_ORIGINS:-https://tecnomyl-upload.exemplo.com}
+      
+    restart: unless-stopped
+    networks:
+      - tecnomyl-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Frontend React (Build Production)
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: tecnomyl-frontend
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL:-https://api.tecnomyl-upload.exemplo.com}
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - tecnomyl-network
+
+networks:
+  tecnomyl-network:
+    driver: bridge 

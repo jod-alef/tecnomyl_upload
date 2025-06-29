@@ -1,0 +1,13 @@
+# Copie este arquivo para .env e ajuste com suas credenciais reais
+
+# MinIO Configuration
+MINIO_ENDPOINT=localhost:9000
+MINIO_ACCESS_KEY=sua_access_key_aqui
+MINIO_SECRET_KEY=sua_secret_key_aqui
+MINIO_SECURE=False
+MINIO_BUCKET=tecnomyl
+
+# API Configuration
+API_HOST=0.0.0.0
+API_PORT=8000
+CORS_ORIGINS=http://localhost:3000 
