@@ -56,6 +56,10 @@ PRODUTOS: List[str] = [
     "TRIZEB",
     "TRIPLEC",
     "ONEFIX",
+    "PROSOY",
+    "PROSOY_TRIO",
+    "TENNOX",
+
 ]
 
 # Tipos de arquivo permitidos
