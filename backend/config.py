@@ -53,6 +53,8 @@ PRODUTOS: List[str] = [
     "SUMMIT_FS",
     "TECNOMYL_PRO"
     "TECNUP_MAX_720",
+    "TECNUP_PREMIUM_620",
+    "TECNUP_SUPER_608",
     "TEMIBLE",
     "TENNOX",
     "TOPINAM",
