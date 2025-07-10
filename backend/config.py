@@ -51,7 +51,7 @@ PRODUTOS: List[str] = [
     "RESIL",
     "SANDAL_200_SP",
     "SUMMIT_FS",
-    "TECNOMYL_PRO"
+    "TECNOMYL_PRO",
     "TECNUP_MAX_720",
     "TECNUP_PREMIUM_620",
     "TECNUP_SUPER_608",
