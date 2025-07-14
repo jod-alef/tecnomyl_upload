@@ -34,7 +34,6 @@ CORS_ORIGINS = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
 PRODUTOS: List[str] = [
     "2,4D_TECNOMYL",
     "ACARIGEN",
-    "ADVER",
     "ADVER_240_SC",
     "AMPLUS",
     "ARCEUS",
