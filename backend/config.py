@@ -49,6 +49,7 @@ PRODUTOS: List[str] = [
     "DUMPER",    
     "EFICAX",
     "ERRADICUR",
+    "ERRADICUR_MAX",
     "FAVORITO",
     "FECYD_E",
     "FLUID_MAX",
