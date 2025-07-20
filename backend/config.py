@@ -97,7 +97,7 @@ PRODUTOS: List[str] = [
     "TECNUP_PREMIUM",
     "TECNUP_SUPER_608",
     "TEMIBLE",
-    "TENNOX",
+    "TENOX",
     "TOPINAM",
     "TRIPLEC",
     "TRIZEB",
